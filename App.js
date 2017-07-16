@@ -1,21 +1,30 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Post from './post';
 
 export default class App extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state = { data: 'nothing yet' };
+  }
+
   componentDidMount() {
-    let feed = fetch('https://www.reddit.com/.json').then(res => {
+    fetch('https://www.reddit.com/.json').then(res => {
       let one = res['_bodyInit'];
-      one = JSON.parse(one);
-      console.log(one['data']);
+      let data = JSON.parse(one);
+      this.setState({ data: data.data.children[0].data });
     });
   }
+
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make automatically reload.</Text>
-        <Text>Shake your phone open the developer menu.</Text>
+        <Post author={this.state.data.author}
+              title={this.state.data.title}
+              score={this.state.data.score}
+              subreddit={this.state.data.subreddit}/>
       </View>
     );
   }
