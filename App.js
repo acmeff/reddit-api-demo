@@ -4,8 +4,11 @@ import { StyleSheet, Text, View } from 'react-native';
 export default class App extends React.Component {
 
   componentDidMount() {
-    let feed = fetch('https://www.reddit.com/.json').then(res => res['data']);
-    console.log(`feed: ${feed}`);
+    let feed = fetch('https://www.reddit.com/.json').then(res => {
+      let one = res['_bodyInit'];
+      one = JSON.parse(one);
+      console.log(one['data']);
+    });
   }
   render() {
     return (
