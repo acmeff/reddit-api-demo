@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ListView } from 'react-native';
+import { StyleSheet, Text, View, ListView, RefreshControl } from 'react-native';
 import Post from './post';
 
 export default class App extends React.Component {
@@ -7,12 +7,25 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = { dataSource: this.ds.cloneWithRows(this.props.current_data) };
+    this.state = {
+      dataSource: this.ds.cloneWithRows(this.props.current_data),
+      refreshing: false
+    };
   }
 
   componentDidMount() {
     this.props.fetchFeed()
-      .then(() => this.setState({ dataSource: this.ds.cloneWithRows(this.props.current_data)}));
+      .then(() => this.setState({
+        dataSource: this.ds.cloneWithRows(this.props.current_data)
+      }));
+  }
+
+  onRefresh() {
+    this.setState({refreshing: true});
+    this.props.fetchFeed().then(() => this.setState({
+      dataSource: this.ds.cloneWithRows(this.props.current_data),
+      refreshing: false
+    }));
   }
 
 
@@ -22,6 +35,13 @@ export default class App extends React.Component {
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) => <Post {...rowData.data}/>}
+          enableEmptySections={true}
+          refreshControl= {
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this.onRefresh.bind(this)}
+            />
+          }
         />
       </View>
     );
