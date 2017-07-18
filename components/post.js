@@ -11,7 +11,7 @@ export default class Post extends React.Component {
         <Text>Author: {this.props.author}</Text>
         <Text>Title: {this.props.title}</Text>
         <Text>Subreddit: {this.props.subreddit}</Text>
-        <Text>Score: {this.props.score}</Text>
+        <Text>Upvotes: {this.props.ups}</Text>
       </View>
     );
   }
@@ -22,7 +22,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#000'
+
   },
 });
