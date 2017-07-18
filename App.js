@@ -1,36 +1,18 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
-import Post from './components/post';
+import configureStore from './store/store';
+import ListContainer from './components/list_container';
+
+const store = configureStore();
 
 export default class App extends React.Component {
 
-  constructor(props){
-    super(props);
-    this.state = { data:  'nothing yet' };
-  }
-
-  componentDidMount() {
-    fetch('https://www.reddit.com/.json').then(res => {
-      let one = res['_bodyInit'];
-      let data = JSON.parse(one);
-      this.setState({ data: data.data.children[0].data });
-    });
-  }
-
-  parseData() {
-    if(this.state.data !== 'nothing yet') {
-    }
-  }
-
-
   render() {
     return (
-      <View style={styles.container}>
-        <Post author={this.state.data.author}
-              title={this.state.data.title}
-              score={this.state.data.score}
-              subreddit={this.state.data.subreddit}/>
-      </View>
+      <Provider store = { store } style={styles.container}>
+        <ListContainer/>
+      </Provider>
     );
   }
 }
