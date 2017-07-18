@@ -3,7 +3,7 @@ import { fetchFeed } from '../actions/actions';
 import List from './list';
 
 const mapStateToProps = state => ({
-
+  current_data: state
 });
 
 const mapDispatchToProps = dispatch => ({

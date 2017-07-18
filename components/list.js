@@ -10,14 +10,14 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://www.reddit.com/.json').then(res => {
-      let one = res['_bodyInit'];
-      let data = JSON.parse(one);
-      this.setState({ data: data.data.children[0].data });
-    });
+    this.props.fetchFeed()
+      .then(() => this.setState({ data:  this.props.current_data }));
   }
 
+
   render() {
+    console.log(this.props.current_data);
+    console.log(this.state);
     return (
       <View style={styles.container}>
         <Post author={this.state.data.author}
