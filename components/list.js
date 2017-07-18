@@ -1,29 +1,28 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ListView } from 'react-native';
 import Post from './post';
 
 export default class App extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = { data:  'nothing yet' };
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = { dataSource: this.ds.cloneWithRows(this.props.current_data) };
   }
 
   componentDidMount() {
     this.props.fetchFeed()
-      .then(() => this.setState({ data:  this.props.current_data }));
+      .then(() => this.setState({ dataSource: this.ds.cloneWithRows(this.props.current_data)}));
   }
 
 
   render() {
-    console.log(this.props.current_data);
-    console.log(this.state);
     return (
       <View style={styles.container}>
-        <Post author={this.state.data.author}
-              title={this.state.data.title}
-              score={this.state.data.score}
-              subreddit={this.state.data.subreddit}/>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => <Post {...rowData.data}/>}
+        />
       </View>
     );
   }
