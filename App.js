@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Post from './post';
+import Post from './components/post';
 
 export default class App extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = { data: 'nothing yet' };
+    this.state = { data:  'nothing yet' };
   }
 
   componentDidMount() {
@@ -15,6 +15,11 @@ export default class App extends React.Component {
       let data = JSON.parse(one);
       this.setState({ data: data.data.children[0].data });
     });
+  }
+
+  parseData() {
+    if(this.state.data !== 'nothing yet') {
+    }
   }
 
 
