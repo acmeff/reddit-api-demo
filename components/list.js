@@ -1,12 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View, ListView, RefreshControl } from 'react-native';
+import { StyleSheet,
+         Text,
+         View,
+         ListView,
+         RefreshControl } from 'react-native';
 import Post from './post';
 
 export default class App extends React.Component {
 
   constructor(props){
     super(props);
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
     this.state = {
       dataSource: this.ds.cloneWithRows(this.props.current_data),
       refreshing: false
@@ -30,7 +36,6 @@ export default class App extends React.Component {
 
 
   render() {
-    // console.log(this.props.navigation);
     return (
       <View style={styles.container}>
         <ListView
