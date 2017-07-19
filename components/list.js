@@ -1,4 +1,5 @@
 import React from 'react';
+import { StackNavigator } from 'react-navigation';
 import { StyleSheet,
          Text,
          View,
@@ -7,6 +8,7 @@ import { StyleSheet,
 import Post from './post';
 
 export default class App extends React.Component {
+
 
   constructor(props){
     super(props);
@@ -37,7 +39,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) => (
@@ -57,12 +59,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
