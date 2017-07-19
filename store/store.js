@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import ListReducer from '../reducers/list_reducer';
+import RootReducer from '../reducers/root_reducer';
 
 const configureStore = () => (
   createStore(
-    ListReducer,
+    RootReducer,
     applyMiddleware(thunk)
   )
 );

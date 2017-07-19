@@ -2,23 +2,22 @@ import React from 'react';
 import { Text,
          View,
          Image,
-         StyleSheet,
-         TouchableHighlight } from 'react-native';
+         StyleSheet } from 'react-native';
 
-export default class Post extends React.Component {
-
-  onPressPost() {
-    // console.log('pressed');
-  }
+export default class Detail extends React.Component {
 
   render() {
     return (
-      <TouchableHighlight
-        onPress={this.onPressPost.bind(this)}>
-        <View style={styles.container}>
-          <Text>Detail</Text>
-        </View>
-      </TouchableHighlight>
+      <View style={styles.container}>
+        <Text>Detail</Text>
+        <Image
+          style={{width: 100, height:  100}}
+          source={{uri: `${this.props.detail.post.thumbnail}`}}/>
+        <Text>Author: {this.props.detail.post.author}</Text>
+        <Text>Title: {this.props.detail.post.title}</Text>
+        <Text>Subreddit: {this.props.detail.post.subreddit}</Text>
+        <Text>Upvotes: {this.props.detail.post.ups}</Text>
+      </View>
     );
   }
 }
@@ -28,11 +27,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#000'
-
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

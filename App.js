@@ -4,13 +4,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import configureStore from './store/store';
 import ListContainer from './components/list_container';
-import Detail from './components/detail';
+import DetailContainer from './components/detail_container';
 
 const store = configureStore();
 
 const NavApp = StackNavigator({
   list: { screen: ListContainer },
-  detail: { screen: Detail }
+  detail: { screen: DetailContainer }
 });
 
 export default class App extends React.Component {

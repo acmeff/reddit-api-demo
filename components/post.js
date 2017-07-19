@@ -8,15 +8,15 @@ import { Text,
 export default class Post extends React.Component {
 
   onPressPost() {
-    // console.log('pressed');
+    this.props.getPost({post: this.props});
+    this.props.nav.navigate('detail');
   }
 
   render() {
-    const { navigate } = this.props.nav;
 
     return (
       <TouchableHighlight
-        onPress={() => navigate('detail')}>
+        onPress={this.onPressPost.bind(this)}>
         <View style={styles.container}>
           <Image
             style={{width: 50, height:  50}}
