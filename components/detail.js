@@ -12,19 +12,11 @@ export default class Post extends React.Component {
   }
 
   render() {
-    const { navigate } = this.props.nav;
-
     return (
       <TouchableHighlight
-        onPress={() => navigate('detail')}>
+        onPress={this.onPressPost.bind(this)}>
         <View style={styles.container}>
-          <Image
-            style={{width: 50, height:  50}}
-            source={{uri: `${this.props.thumbnail}`}}/>
-          <Text>Author: {this.props.author}</Text>
-          <Text>Title: {this.props.title}</Text>
-          <Text>Subreddit: {this.props.subreddit}</Text>
-          <Text>Upvotes: {this.props.ups}</Text>
+          <Text>Detail</Text>
         </View>
       </TouchableHighlight>
     );

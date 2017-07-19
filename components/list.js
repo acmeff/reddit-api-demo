@@ -30,11 +30,12 @@ export default class App extends React.Component {
 
 
   render() {
+    // console.log(this.props.navigation);
     return (
       <View style={styles.container}>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Post {...rowData.data}/>}
+          renderRow={(rowData) => <Post {...rowData.data} nav={this.props.navigation}/>}
           enableEmptySections={true}
           refreshControl= {
             <RefreshControl
