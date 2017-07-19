@@ -8,10 +8,9 @@ export default class Detail extends React.Component {
 
   render() {
     const { detail } = this.props;
-    
+
     return (
       <View style={styles.container}>
-        <Text>Detail</Text>
         <Image
           style={{width: 100, height:  100}}
           source={{uri: `${detail.post.thumbnail}`}}/>
@@ -31,5 +30,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 10
   },
 });

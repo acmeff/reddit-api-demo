@@ -19,12 +19,14 @@ export default class Post extends React.Component {
         onPress={this.onPressPost.bind(this)}>
         <View style={styles.container}>
           <Image
-            style={{width: 50, height:  50}}
+            style={styles.thumbnail}
             source={{uri: `${this.props.thumbnail}`}}/>
-          <Text>Author: {this.props.author}</Text>
-          <Text>Title: {this.props.title}</Text>
-          <Text>Subreddit: {this.props.subreddit}</Text>
-          <Text>Upvotes: {this.props.ups}</Text>
+          <View style={styles.item}>
+            <Text>Author: {this.props.author}</Text>
+            <Text>Title: {this.props.title}</Text>
+            <Text>Subreddit: {this.props.subreddit}</Text>
+            <Text>Upvotes: {this.props.ups}</Text>
+          </View>
         </View>
       </TouchableHighlight>
     );
@@ -36,11 +38,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'flex-start',
+    flexDirection: 'row',
     padding: 10,
     borderWidth: 1,
     borderColor: '#000'
-
   },
+  item: {
+    paddingRight: 50,
+    paddingLeft: 5
+  },
+  thumbnail: {
+    width: 50,
+    height: 50
+  }
 });

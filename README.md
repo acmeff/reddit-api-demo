@@ -1,3 +1,7 @@
+##Instructions:
+
+(You will need to have Expo installed on your mobile device in order to demo this app)
+
 
 
 
